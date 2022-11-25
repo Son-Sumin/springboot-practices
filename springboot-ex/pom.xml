@@ -8,6 +8,8 @@
 		<!-- lookup parent from repository -->
 		<relativePath />
 	</parent>
+
+
 	<groupId>com.bitacademy</groupId>
 	<artifactId>springboot-ex</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
