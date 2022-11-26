@@ -1,0 +1,38 @@
+# Spring Boot (도구, Library)
+
+전산 용어로 boot 또는 Booting
+전원이 켜지는 순간부터 사용자의 명령을 받을 준비하는 일련의 모든 과정,
+즉 어떤 일을 시작하기 위해 필요한 모든 준비를 마친다.
+
+Spring Boot
+: 어플리케이션이 시작되기 위해 필요한 모든 준비를 자동으로 마쳐주는 라이브러리(도구)
+
+어플리케이션이 시작되기 위해 필요한 모든 준비가 무엇일까?
+1. 어플리케이션 기능(비지니스) 구현코드 **내가
+2. 어플리케이션 설정 **Spring Boot : 상투적, 반복적이기 때문에 자동으로 해줄 수 있다.
+
+Spring Boot 핵심 기술
+1. 스타터 의존성(Starter Dependency); pom에서 라이브러리 및 dependency 설정
+2. 자동 설정(Automatic Configuration); mvc, repo, sevice, container 기타 등등 설정
+     -> 스타터에 의존함
+
++ 오해
+1. 모든 설정을 다  자동으로 해주는 것은 아니다.
+2. 개발자 편의를 위해 스프링 설정을 간소화해줄 뿐이지 모든 설정이 없어진 것이 아니다***
+    -> 에러가 나면 자동으로 스프링부트가 세팅해줬기에 대처하기 까다롭다
+    -> 과정을 알고 있어야 함
+3. 자동 설정을 오버라이드(조정하고 미세한 설정이 필요)하는 것이 반드시 필요하다*****
+
+=> what to do; 구현코드, 스타터 명시, 자동설정 조정 및 미세 설정
+
+스프링부트 프로젝트는 부모가 정해져 있다
+  -> Spring parents starter
+
+springboot-practices [폴더]
+   |- springboot-ex
+   |      |- pom.xml
+   |- MyApplication
+   |      |- pom.xml
+
+springboot 관련 작업 시 세팅해주는 프로그램도 있다(참고, googling)
+springboot initializer
