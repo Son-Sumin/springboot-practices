@@ -46,7 +46,7 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 
-		<!-- Tomcat Jaster(jsp->servlet으로 인식해줌) -->
+		<!-- Tomcat Jasper(jsp->servlet으로 인식해줌) -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
