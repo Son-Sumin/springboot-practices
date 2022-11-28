@@ -1,12 +1,12 @@
 package ex01;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 
-@SpringBootConfiguration
+@Configuration
 public class MyApplication {
 	
 	@Bean
