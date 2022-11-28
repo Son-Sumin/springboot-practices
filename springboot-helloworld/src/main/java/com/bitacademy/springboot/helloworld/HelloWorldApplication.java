@@ -30,6 +30,9 @@ public class HelloWorldApplication {
 		 *     - 서버 인스턴스 실행
 		 * 5. ApplicationRunner 인터페이스를 구현한 빈을 Application Context에서 찾아서 실행(run 호출)
 		 * 
+		 * 웹일 경우 2,4번이 추가
+		 * 아닐 시 1,3,5번 기본
+		 * 
 		 */
 		
 //		ConfigurableApplicationContext ac = null;
