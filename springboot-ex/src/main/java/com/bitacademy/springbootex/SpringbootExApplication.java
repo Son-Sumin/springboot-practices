@@ -11,3 +11,15 @@ public class SpringbootExApplication {
 	}
 
 }
+
+
+/**
+ * 
+ * Maven project(jar) springboot-ex 내용 
+ *
+ * @SpringBootApplication 기본틀
+ * 메인: SpringApplication.run(SpringbootExApplication.class, args);
+ * properties: 향후 수정 소요 있을만한 것들
+ * test: 메인 실행 전 테스트
+ * 
+ */
