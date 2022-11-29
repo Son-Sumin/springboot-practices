@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 /**
  * Spring Boot Test Integration 기반
  * 
- * (JUnit 확인, SpringBoot wk)
+ * (JUnit 확인, SpringBoot)
  * Spring Boot Test Integration(@SpringBootTest)에서는
  * 자동(스캔)을 위해서 설정 클래스에 @SpringBootConfiguration을 달아야한다.
  * 
