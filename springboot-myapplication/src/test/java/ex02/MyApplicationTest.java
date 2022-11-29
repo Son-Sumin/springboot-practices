@@ -15,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
  * 
  * @SpringBootApplication은 @SpringBootConfiguration 기능을 갖고 있다.
  * 
+ * ex01/MyApplicationTest02 의 옳은 버전
+ * 
  */
 
 @SpringBootTest
