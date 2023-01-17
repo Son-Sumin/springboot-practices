@@ -26,8 +26,33 @@ public class HelloController {
 	
 	@GetMapping("hello-string")
 	@ResponseBody
-	public String helloMvc(@RequestParam("name") String name) {
+	public String helloString(@RequestParam("name") String name) {
 		return "hello " + name;
+	}
+	
+	// API 핵심 - JSON(key: value로 이뤄짐)으로 넘겨줌
+	// 스프링에서 객체를 반환하고 @ResponseBody을 붙이면 JSON으로 반환하는 것이 기본
+	@GetMapping("hello-api")
+	@ResponseBody
+	public Hello  helloApi(@RequestParam("name") String name) {
+		Hello hello = new Hello();
+		hello.setName(name);
+		return hello;
+	}
+	
+	// 객체 생성
+	// static 만들면 public class HelloController 안에서 또 사용할 수 있다
+	// getter setter방식 = 프로퍼티 접근 방식 = JAVA Bean 규약
+	static class Hello{
+		private String name;
+		
+		public String getName() {
+			return name;
+		}
+		
+		public void setName(String name) {
+			this.name = name;
+		}
 	}
 }
 
@@ -64,4 +89,18 @@ viewResolver가 리턴받은 "hello-template"와 똑같은 이름을 가진 temp
 템플릿 엔진이 렌더링 후 변환한 html을 웹 브라우저에 넘긴다.
 
 정적컨텐츠는 변환없이 넘긴다.
+
+ * 동작 원리 *
+ * @GetMapping("hello-api")
+웹 브라우저에서 localhost:8080/hello-api 를 넘기면
+스프링부트에 내장된 톰켓 서버가 스프링 컨테이너에게 넘긴다.
+스프링 컨테이너 안에 있는 HelloController 중 @GetMapping에 반응하여 get방식으로 넘어온 "hello-api" @GetMapping("hello-api") 매칭된다.
+
+이때 @ResponseBody가 있으면 Http에 그대로 넘겨주려 한다.
+넘겨주는 것이 문자면 그냥 넘겨주지만, 객체면 JSON 방식은 데이터를 만들어서 Http응답에 반환하는 것이 디폴트
+@ResponseBody가 있으면 HttpMessageConverter가 동작하는데 여기에 JsonConverter(객체용), String Converter(문자용)가 있음
+JsonConverter가 요청한 곳에 key: value로 이뤄진 data를 만들어 보내줌
+
+객체를 JSON으로 바꿔주는 라이브러리 중 Jackson이 있는데, 스프링은 이 라이브러리는 기본으로 넣어둠
+
  */
