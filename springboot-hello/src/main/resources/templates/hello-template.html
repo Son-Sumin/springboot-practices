@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>
+
+<!-- 
+
+thymeleaf template의 장점
+파일의 path 주소만 창에 입력해도 틀을 볼 수 있다
+file:///C:/bitacademy-bigdata-ai/eclipse-workspace/springboot-practices/springboot-hello/src/main/resources/templates/hello-template.html
+
+th:text="'hello ' + ${name}"에 값이 있으면 hello! empty 대신에 서버에 출력됨
+
+ -->
