@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import com.hello.springboothello.ex.domain.Member;
 
-public abstract class MemoryMemberRepository implements MemberRepository {
+public class MemoryMemberRepository implements MemberRepository {
 
 	private static Map<Long, Member> store = new HashMap<>();
 	private static long sequence = 0L;
@@ -36,5 +36,9 @@ public abstract class MemoryMemberRepository implements MemberRepository {
 	@Override
 	public List<Member> findAll() {
 		return new ArrayList<>(store.values());		//  Map<Long, Member>의 Member가 values() 의미함
+	}
+	
+	public void clearStore() {
+		store.clear();
 	}
 }
