@@ -7,11 +7,11 @@ import com.hello.springboothello.ex.service.MemberService;
 
 /*
  스프링 컨테이터가 뜰 때 @Controller을 보고 MemberController 객체를 생성하여 갖고있다
-(이를 스프링 컨테이터에서 스프링 빈이 관리된다라고 표현함)
-MemberController가 생성자 호출도 같이함
-그런데 생성자에 @Autowired가 있으면 스프링이 스프링 컨테이터에 있는 MemberService memberService를 연결해줌
-지금 상태에서 실행하면 ~that could not be found. 나옴. 이유는 스프링이 MemberService 가치를 모르기 때문
-그래서 그 전에 MemberService에 @Service을 붙이면 스프링이 스프링 컨테이너에 MemberService를 등록해줌
+ (이를 스프링 컨테이터에서 스프링 빈이 관리된다라고 표현함)
+ MemberController가 생성자 호출도 같이함
+ 그런데 생성자에 @Autowired가 있으면 스프링이 스프링 컨테이터에 있는 MemberService memberService를 연결해줌
+ 지금 상태에서 실행하면 ~that could not be found. 나옴. 이유는 스프링이 MemberService 가치를 모르기 때문
+ 그래서 그 전에 MemberService에 @Service을 붙이면 스프링이 스프링 컨테이너에 MemberService를 등록해줌
  */
 
 @Controller
@@ -23,9 +23,24 @@ public class MemberController {
 	
 	private final MemberService memberService;
 	
+	// DI 주입 방법1 - 생성자 주입
 	// 생성자 설정
 	@Autowired
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}
+	
+//	 DI 주입 방법2 - 필드 주입
+//	 단점: 더 이상 수정이 힘들다
+//	@Autowired
+//	private MemberService memberService;
+//	
+//	 DI 주입 방법3 - setter 주입
+//	 단점: Controller를 호출했을 때 public void setMemberService 상태여야 한다.
+//   public으로 노출되어 있어 바뀔 수 있는 상황이고, 중간에 잘못 바꾸면 문제가 된다. 사실 처음에만 setter를 만지지만 이후에는 만질 일이 없다.
+//	private MemberService memberService;
+//	@Autowired
+//	public void setMemberService(MemberService memberService) {
+//		this.memberService = memberService;
+//	}	
 }
