@@ -5,11 +5,17 @@ import java.util.Optional;
 
 import com.hello.springboothello.ex.domain.Member;
 import com.hello.springboothello.ex.repository.MemberRepository;
-import com.hello.springboothello.ex.repository.MemoryMemberRepository;
 
 public class MemberService {
 
-	private final MemberRepository memberRepository = new MemoryMemberRepository();
+	private final MemberRepository memberRepository;
+	
+	public MemberService(MemberRepository memberRepository) {
+		this.memberRepository = memberRepository;
+	}
+	
+//	@Autowired
+//	MemoryMemberRepository memberRepository;
 	
 	/* 회원가입 */
 	public Long join(Member member) {
