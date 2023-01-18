@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="container">  <!-- thymeleaf 본격적으로 동작 -->
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>이름</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="member : ${members}">  <!-- "___ :  ${ }" : ${ } model 안에 있는 값 꺼내서 ___ 넣기 -->
+					<td th:text="${member.id}"></td>
+					<td th:text="${member.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div> <!-- /container -->
+
+</body>
+</html>
