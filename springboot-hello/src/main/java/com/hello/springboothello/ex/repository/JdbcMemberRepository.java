@@ -1,5 +1,7 @@
 package com.hello.springboothello.ex.repository;
 
+import com.hello.springboothello.ex.domain.Member;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,24 +13,16 @@ import java.util.Optional;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
-import com.hello.springboothello.ex.domain.Member;
-
-
-
-// interface MemberRepository 의 구현체 만들기
-// MemberRepository : 회원 저장 역할
-// JdbcMemberRepository : 구현 저장 역할, JDBC와 연동하여 작업하는 역할
 public class JdbcMemberRepository implements MemberRepository {
-	
 	private final DataSource dataSource;
-	
+
 	public JdbcMemberRepository(DataSource dataSource) {
 		this.dataSource = dataSource;
-		//dataSource.getConnection();  // 스프링 통해서 dataSource 주입 받고, .getConnection해서 진짜 DB 소켓 얻기
 	}
-	
+
 	@Override
 	public Member save(Member member) {
 		String sql = "insert into member(name) values(?)";
@@ -81,31 +75,6 @@ public class JdbcMemberRepository implements MemberRepository {
 	}
 
 	@Override
-	public Optional<Member> findByName(String name) {
-		String sql = "select * from member where name = ?";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				Member member = new Member();
-				member.setId(rs.getLong("id"));
-				member.setName(rs.getString("name"));
-				return Optional.of(member);
-			}
-			return Optional.empty();
-		} catch (Exception e) {
-			throw new IllegalStateException(e);
-		} finally {
-			close(conn, pstmt, rs);
-		}
-	}
-
-	@Override
 	public List<Member> findAll() {
 		String sql = "select * from member";
 		Connection conn = null;
@@ -130,7 +99,32 @@ public class JdbcMemberRepository implements MemberRepository {
 		}
 	}
 
-	private Connection getConnection() {
+	@Override
+	public Optional<Member> findByName(String name) {
+		String sql = "select * from member where name = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Member member = new Member();
+				member.setId(rs.getLong("id"));
+				member.setName(rs.getString("name"));
+				return Optional.of(member);
+			}
+			return Optional.empty();
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			close(conn, pstmt, rs);
+		}
+	}
+
+	private Connection getConnection() throws CannotGetJdbcConnectionException {
 		return DataSourceUtils.getConnection(dataSource);
 	}
 
