@@ -21,12 +21,12 @@ public class MemberService {
 	
 	/* 회원가입 */
 	public Long join(Member member) {
-
 		validateDuplicateMember(member);	// 중복 회원 검증
 		memberRepository.save(member);
 		return member.getId();				// 임의로 Id만 반환하는 것으로 설정
 	}
-		
+	
+	// 같은 이름이 있는 중복회원X
 	private void validateDuplicateMember(Member member) {
 		memberRepository.findByName(member.getName())
 				.ifPresent(m -> {

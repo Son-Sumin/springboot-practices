@@ -2,7 +2,6 @@ package com.hello.springboothello.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +21,14 @@ public class MemberController {
 	private final MemberService memberService;
 	
 	// 생성자 설정
-	@Autowired
+	// @Autowired
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}
 	
 	@GetMapping("/members/new")  // URL 접근, 조회은 보통 @GetMapping
 	public String createForm() {
-		return "members/createMemberFrom";
+		return "members/createMemberForm";
 	}
 	
 	@PostMapping("/members/new")  // form에 내용을 담아서 넘길 때 @PostMapping

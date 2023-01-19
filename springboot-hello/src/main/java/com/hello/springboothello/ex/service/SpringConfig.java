@@ -2,6 +2,7 @@ package com.hello.springboothello.ex.service;
 
 import javax.persistence.EntityManager;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,6 +19,11 @@ import com.hello.springboothello.ex.repository.MemberRepository;
 public class SpringConfig {
 
 	private EntityManager em;
+	
+	@Autowired
+	public SpringConfig(EntityManager em) {
+		this.em = em;
+	}
 	
 //	private DataSource dataSource;
 	
