@@ -1,6 +1,5 @@
 package com.hello.springboothello.ex.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,13 +29,20 @@ public class JpaMemberRepository implements MemberRepository {
 	
 	@Override
 	public Optional<Member> findByName(String name) {
-		return member;
+		List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
+				.setParameter("name", name)
+				.getResultList();
+		
+		return result.stream().findAny();
 	}
 	
 	@Override
 	public List<Member> findAll() {
 		List<Member> result = em.createQuery("select m from Member m", Member.class).getResultList();
 		return result;
-		// jpql query 언어
+		// jpql query 언어 : 테이블 대상이 아닌 객체 대상으로 정확히 entity 대상으로 쿼리를 날린다, 그럼 sql로 번역됨
+		// select m : 객체 자체를 select
 	}
 }
+
+// 여러 개의 리스트를 갖고 돌릴 때는 jpql query 필요

@@ -1,11 +1,11 @@
 package com.hello.springboothello.ex.service;
 
-import javax.sql.DataSource;
+import javax.persistence.EntityManager;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.hello.springboothello.ex.repository.JdbcMemberRepository;
+import com.hello.springboothello.ex.repository.JpaMemberRepository;
 import com.hello.springboothello.ex.repository.MemberRepository;
 
 
@@ -17,7 +17,12 @@ import com.hello.springboothello.ex.repository.MemberRepository;
 @Configuration
 public class SpringConfig {
 
-	private DataSource dataSource;
+	private EntityManager em;
+	
+//	private DataSource dataSource;
+	
+//	@Autowired
+//	public SpringConfig(DataSource dataSource) { this.dataSource = dataSource; }
 	
 	@Bean
 	public MemberService memberService() {
@@ -27,6 +32,8 @@ public class SpringConfig {
 	@Bean
 	public MemberRepository memberRepository() {
 		//return new MemoryMemberRepository();    // interface는 당연히 객체 생성 불가
-		return new JdbcMemberRepository(dataSource);
+		//return new JdbcMemberRepository(dataSource);
+		//return new JdbcTemplateMemberRepository(dataSource);
+		return new JpaMemberRepository(em);
 	}
 } 

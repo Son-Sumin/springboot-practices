@@ -3,13 +3,13 @@ package com.hello.springboothello.ex.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hello.springboothello.ex.domain.Member;
 import com.hello.springboothello.ex.repository.MemberRepository;
 
 //@Service
+@Transactional   // JPA 사용하기 위해 꼭 필요함. 데이터 저장, 변경하는데 꼭 필요함.
 public class MemberService {
 
 	private final MemberRepository memberRepository;
